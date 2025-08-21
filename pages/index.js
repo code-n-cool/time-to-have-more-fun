@@ -3,11 +3,11 @@ import { EventBus, defaultPlace, auth, logout } from '../utils';
 import { Head, Nav, AuthForm, PlaceForm, PlacePicker, WantToGo, BeenThere } from '../components';
 
 const Home = () => {
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const [authModalShown, setAuthModalShown] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [placeToEdit, setPlaceToEdit] = useState(defaultPlace);
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => setAuthed(!!user));
