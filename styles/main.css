@@ -1,14 +1,5 @@
 @tailwind base;
 
-h1 {
-  @apply text-5xl;
-}
-h2 {
-  @apply text-3xl;
-}
-h3 {
-  @apply text-xl;
-}
 
 @tailwind components;
 @tailwind utilities;
@@ -19,4 +10,14 @@ body.freeze {
 
 .modal-inner {
   max-height: 90%;
+}
+
+h1 {
+  @apply text-5xl;
+}
+h2 {
+  @apply text-3xl;
+}
+h3 {
+  @apply text-xl;
 }
