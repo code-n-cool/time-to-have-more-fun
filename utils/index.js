@@ -20,13 +20,6 @@ if (!firebase.apps.length) {
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-const snapshotToArray = querySnapshot => {
-  if (!querySnapshot.docs && !querySnapshot.docs.length > 0) {
-    throw new Error('No docs!!');
-  }
-  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-};
-
 const getUnvisitedPlaces = async () => {
   try {
     const querySnapshot = await db
@@ -38,6 +31,13 @@ const getUnvisitedPlaces = async () => {
   } catch (e) {
     console.error('📣: fetchData -> e', e);
   }
+};
+
+const snapshotToArray = querySnapshot => {
+  if (!querySnapshot.docs && !querySnapshot.docs.length > 0) {
+    throw new Error('No docs!!');
+  }
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 
 const getVisitedPlaces = async () => {
@@ -72,17 +72,6 @@ const slugify = str => {
 };
 /* eslint-enable */
 
-const addPlace = async place => {
-  try {
-    await db
-      .collection('places')
-      .doc(place.id ? place.id : slugify(place.name))
-      .set(place);
-  } catch (e) {
-    console.error('📣: addPlace -> e', e);
-  }
-};
-
 const deletePlace = async place => {
   try {
     await db
@@ -111,6 +100,17 @@ const defaultTags = {
     medium: false,
     short: false,
   },
+};
+
+const addPlace = async place => {
+  try {
+    await db
+      .collection('places')
+      .doc(place.id ? place.id : slugify(place.name))
+      .set(place);
+  } catch (e) {
+    console.error('📣: addPlace -> e', e);
+  }
 };
 
 const defaultTagField = {
